@@ -1,12 +1,15 @@
 package com.zbhaha.mp.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Getter;
-import lombok.Setter;
+
 @TableName("user")
 public class User {
+    public static final String UID = "uid";
+    public static final String ADDR = "addr";
+    public static final String NAME = "name";
+    public static final String TELEPHONE = "telephone";
+
     @TableId
     private String uid;
     private String addr;
