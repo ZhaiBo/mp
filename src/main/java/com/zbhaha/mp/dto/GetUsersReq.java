@@ -8,7 +8,8 @@ import lombok.Setter;
 @Getter
 public class GetUsersReq extends BaseRequest{
     private static final long serialVersionUID = -5699856161057860002L;
+    private String uid;
+    private String name;
     private String pageIndex;
     private String pageSize;
-    private String name;
 }

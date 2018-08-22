@@ -1,19 +1,50 @@
 "use strict";
 
+var pageIndex = 1;
+var pageSize = 8;
+
+var totalPages = 0;
+var totalRecords = 0;
 $(function () {
-    getUser();
+    new Vue({
+        el: '#app',
+        data: {
+            users: [],
+            searchVal: '',
+            totalPages: totalPages,
+            totalRecords: totalRecords
+        },
+        created: function () {
+            let rtnData = getUser();
+            this.users = rtnData.list;
+            this.totalPages = rtnData.totalPages;
+            this.totalRecords = rtnData.totalRecords;
+        },
+        methods: {
+            search: function (event) {
+                let rtnData = getUser(this.searchVal);
+                this.users = rtnData.list;
+                this.totalPages = rtnData.totalPages;
+                this.totalRecords = rtnData.totalRecords;
+            }
+        }
+    });
+
 })
 
-function getUser() {
-    var request = {
-        uid:'1'
+function getUser(uid) {
+    let rtnData;
+    let request = {
+        uid: uid,
+        pageIndex: pageIndex,
+        pageSize: pageSize
     }
-    post(commonUrl + 'user/get', request, function (data) {
+    post(commonUrl + 'user/list', request, function (data) {
         if (data.rtnCode == 'E000000') {
-            //success
-            alert(JSON.stringify(data));
+            rtnData = data
         } else {
-
+            rtnData = null;
         }
     }, null, false);
+    return rtnData;
 }
