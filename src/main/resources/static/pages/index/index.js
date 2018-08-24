@@ -26,25 +26,23 @@ $(function () {
                 this.users = rtnData.list;
                 this.totalPages = rtnData.totalPages;
                 this.totalRecords = rtnData.totalRecords;
+            },
+            getUser:function (uid){
+                let rtnData;
+                let request = {
+                    uid: uid,
+                    pageIndex: pageIndex,
+                    pageSize: pageSize
+                }
+                post(commonUrl + 'user/list', request, function (data) {
+                    if (data.rtnCode == 'E000000') {
+                        rtnData = data
+                    } else {
+                        rtnData = null;
+                    }
+                }, null, false);
+                return rtnData;
             }
         }
     });
-
 })
-
-function getUser(uid) {
-    let rtnData;
-    let request = {
-        uid: uid,
-        pageIndex: pageIndex,
-        pageSize: pageSize
-    }
-    post(commonUrl + 'user/list', request, function (data) {
-        if (data.rtnCode == 'E000000') {
-            rtnData = data
-        } else {
-            rtnData = null;
-        }
-    }, null, false);
-    return rtnData;
-}
