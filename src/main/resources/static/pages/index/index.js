@@ -15,14 +15,14 @@ $(function () {
             totalRecords: totalRecords
         },
         created: function () {
-            let rtnData = getUser();
+            let rtnData = this.getUser('');
             this.users = rtnData.list;
             this.totalPages = rtnData.totalPages;
             this.totalRecords = rtnData.totalRecords;
         },
         methods: {
             search: function (event) {
-                let rtnData = getUser(this.searchVal);
+                let rtnData = this.getUser(this.searchVal);
                 this.users = rtnData.list;
                 this.totalPages = rtnData.totalPages;
                 this.totalRecords = rtnData.totalRecords;
