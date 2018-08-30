@@ -13,10 +13,9 @@ public class UserController extends ApiController {
     private IUserService userService;
 
     @ResponseBody
-    @RequestMapping(value = "get", method = RequestMethod.POST)
-    public GetUserRes getById(@RequestBody GetUserReq request) {
-        return userService.getBy(request);
-
+    @RequestMapping(value = "${uid}/get", method = RequestMethod.POST)
+    public GetUserRes getById(@PathVariable String uid) {
+        return userService.getBy(uid);
     }
 
     @ResponseBody

@@ -11,7 +11,7 @@ public interface IUserService extends IService<User> {
 
     GetUsersRes listBy(GetUsersReq request);
 
-    GetUserRes getBy(GetUserReq request);
+    GetUserRes getBy(String uid);
 
     UserRes insert(UserReq request);
 

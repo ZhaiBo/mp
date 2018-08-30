@@ -49,10 +49,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public GetUserRes getBy(GetUserReq request) {
+    public GetUserRes getBy(String uid) {
         GetUserRes response = new GetUserRes();
-        CheckUtils.checkNotNull(request.getUid(), "用户id");
-        User user = userMapper.selectById(request.getUid());
+        CheckUtils.checkNotNull(uid, "用户id");
+        User user = userMapper.selectById(uid);
         BeanUtils.copyProperties(user, response);
         response.setSuccess();
         return response;
